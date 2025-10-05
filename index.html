@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Space Image Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+   <style>
+        :root {
+            --nasa-blue: #0B3D91;
+            --nasa-red: #FC3D21;
+            --space-black: #0a0a0a;
+            --star-white: #ffffff;
+            --nebula-gray: #1a1a1a;
+            --cosmic-silver: #8892b0;
+            --orbit-blue: #64ffda;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--space-black);
+            color: var(--star-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated starfield background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--orbit-blue), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--star-white), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--orbit-blue), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--star-white), transparent),
+                radial-gradient(2px 2px at 160px 30px, var(--orbit-blue), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: drift 20s linear infinite;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        @keyframes drift {
+            from { transform: translateX(0px); }
+            to { transform: translateX(-200px); }
+        }
+
+        .header {
+            background: rgba(11, 61, 145, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nasa-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 14px;
+            color: var(--star-white);
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--star-white);
+            letter-spacing: 1px;
+        }
+
+        .mission-status {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--orbit-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--orbit-blue);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Gallery View Styles */
+        .gallery-container {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .gallery-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--orbit-blue);
+        }
+
+        .gallery-subtitle {
+            color: var(--cosmic-silver);
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            background: rgba(11, 61, 145, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 4px;
+            color: var(--star-white);
+            padding: 12px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--orbit-blue);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
+            background: rgba(11, 61, 145, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: var(--cosmic-silver);
+        }
+
+        .search-btn {
+            background: var(--nasa-blue);
+            border: 1px solid var(--orbit-blue);
+            border-radius: 4px;
+            color: var(--star-white);
+            padding: 12px 24px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .search-btn:hover {
+            background: var(--orbit-blue);
+            color: var(--space-black);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .search-status {
+            margin-top: 15px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            color: var(--cosmic-silver);
+            text-align: center;
+        }
+
+        .search-status.loading {
+            color: var(--orbit-blue);
+        }
+
+        .search-status.error {
+            color: var(--nasa-red);
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            background: rgba(11, 61, 145, 0.3);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 4px;
+            color: var(--cosmic-silver);
+            padding: 8px 16px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mode-btn.active {
+            background: var(--nasa-blue);
+            border-color: var(--orbit-blue);
+            color: var(--star-white);
+        }
+
+        .mode-btn:hover {
+            border-color: var(--orbit-blue);
+            color: var(--orbit-blue);
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .image-card {
+            background: var(--nebula-gray);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .image-card:hover {
+            border-color: var(--orbit-blue);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .image-preview {
+            height: 200px;
+            background: var(--space-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-placeholder {
+            font-family: 'Orbitron', monospace;
+            color: var(--cosmic-silver);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .image-info {
+            padding: 20px;
+        }
+
+        .image-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--star-white);
+            text-transform: uppercase;
+        }
+
+        .image-description {
+            color: var(--cosmic-silver);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .view-button {
+            background: var(--nasa-blue);
+            border: 1px solid var(--orbit-blue);
+            color: var(--star-white);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .view-button:hover {
+            background: var(--orbit-blue);
+            color: var(--space-black);
+        }
+
+        /* Viewer Mode Styles */
+        .viewer-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--space-black);
+            z-index: 1000;
+            display: none;
+        }
+
+        .viewer-header {
+            background: rgba(11, 61, 145, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .current-image-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            color: var(--orbit-blue);
+        }
+
+        .viewer-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(11, 61, 145, 0.9);
+            border: 1px solid rgba(100, 255, 218, 0.5);
+            border-radius: 4px;
+            color: var(--star-white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-family: 'Orbitron', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: var(--orbit-blue);
+        }
+
+        .close-btn {
+            background: var(--nasa-red);
+            border-color: var(--nasa-red);
+        }
+
+        .close-btn:hover {
+            background: #ff4d2d;
+        }
+
+        .viewer-content {
+            height: calc(100vh - 70px);
+            position: relative;
+        }
+
+        #openseadragon-viewer {
+            width: 100%;
+            height: 100%;
+            background: var(--space-black);
+        }
+
+        .viewer-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 61, 145, 0.1);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--cosmic-silver);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .gallery-container {
+                padding: 15px;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .gallery-title {
+                font-size: 1.5rem;
+            }
+            
+            .viewer-header {
+                padding: 10px 15px;
+            }
+            
+            .current-image-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="nasa-logo">
+                <img src="assets/nasa.svg" alt="NASA Logo" />
+            </div>
+            <h1>Embiggen your eyes</h1>
+        </div>
+        <div class="mission-status">
+            <div class="status-dot"></div>
+            Gallery Mode
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-header">
+            <h2 class="gallery-title">Mission Image Archive</h2>
+            <p class="gallery-subtitle">Search NASA's vast image database or explore local mission data</p>
+            
+            <div class="mode-toggle">
+                <button class="mode-btn active" onclick="switchMode('local')" id="localModeBtn">Local Archive</button>
+                <button class="mode-btn" onclick="switchMode('nasa')" id="nasaModeBtn">NASA Database</button>
+            </div>
+            
+            <div class="search-container" id="searchContainer" style="display: none;">
+                <form class="search-form" onsubmit="searchNASAImages(event)">
+                    <input type="text" class="search-input" id="searchInput" 
+                           placeholder="Search NASA images... (e.g., moon, mars, earth, hubble)" 
+                           autocomplete="off">
+                    <button type="submit" class="search-btn" id="searchBtn">Search</button>
+                </form>
+                <div class="search-status" id="searchStatus"></div>
+            </div>
+        </div>
+
+        <div class="image-grid" id="imageGrid">
+            <!-- Images will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Viewer Mode -->
+    <div class="viewer-mode" id="viewerMode">
+        <div class="viewer-header">
+            <div class="current-image-title" id="currentImageTitle">Deep Space Observation</div>
+            <div class="viewer-controls">
+                <button class="control-btn" onclick="viewer.viewport.goHome()" title="Return to Origin">⌂</button>
+                <button class="control-btn" onclick="viewer.viewport.zoomBy(1.5)" title="Magnify">+</button>
+                <button class="control-btn" onclick="viewer.viewport.zoomBy(0.7)" title="Reduce">-</button>
+                <button class="control-btn close-btn" onclick="closeViewer()" title="Return to Gallery">✕</button>
+            </div>
+        </div>
+        
+        <div class="viewer-content">
+            <div id="openseadragon-viewer"></div>
+            <div class="viewer-footer">
+                <div id="coordinates">COORDINATES: 0.0000, 0.0000</div>
+                <div>Deep Space Imaging • OpenSeadragon Engine</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OpenSeadragon CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
+    
+    <script>
+        let viewer;
+        let currentMode = 'local'; // 'local' or 'nasa'
+        let nasaImages = [];
+        
+        const imageCatalog = [
+            {
+                id: 'andromeda',
+                title: 'Andromeda Galaxy',
+                description: 'M31 - Our nearest galactic neighbor, captured in stunning detail showing spiral arms and stellar formations.',
+                dzi: 'img/andromeda.dzi',
+                preview: 'img/previews/andromeda.png',
+                type: 'local'
+            },
+            {
+                id: 'orion',
+                title: 'Orion Nebula',
+                description: 'M42 - A stellar nursery where new stars are born, revealing the cosmic dance of gas and dust.',
+                dzi: 'img/orion.dzi',
+                preview: 'img/previews/orion.png',
+                type: 'local'
+            },
+            {
+                id: 'biggest',
+                title: 'Galaxy NGC 1309',
+                description: 'Rich with detail, the spiral galaxy NGC 1309 shines in this NASA/ESA Hubble Space Telescope image.',
+                dzi: 'img/galaxy_NGC1309.dzi',
+                preview: 'img/previews/star1.png',
+                type: 'local'
+            },
+            {
+                id: 'test',
+                title: 'Galaxy Sombrero',
+                description: 'The Sombrero galaxy, Messier 104 (M104).',
+                dzi: 'img/sombrero.dzi',
+                preview: 'img/previews/hat.png',
+                type: 'local'
+            }
+        ];
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            populateGallery();
+        });
+
+        // Switch between local and NASA modes
+        function switchMode(mode) {
+            currentMode = mode;
+            
+            // Update button states
+            document.getElementById('localModeBtn').classList.toggle('active', mode === 'local');
+            document.getElementById('nasaModeBtn').classList.toggle('active', mode === 'nasa');
+            
+            // Show/hide search container
+            const searchContainer = document.getElementById('searchContainer');
+            searchContainer.style.display = mode === 'nasa' ? 'block' : 'none';
+            
+            // Update mission status
+            const statusText = mode === 'local' ? 'Local Archive' : 'NASA Database';
+            document.querySelector('.mission-status').innerHTML = 
+                `<div class="status-dot"></div>${statusText}`;
+            
+            // Populate appropriate gallery
+            if (mode === 'local') {
+                populateGallery();
+                document.getElementById('searchStatus').textContent = '';
+            } else {
+                // Show empty state with instructions
+                showNASASearchPrompt();
+            }
+        }
+
+        // Show search prompt for NASA mode
+        function showNASASearchPrompt() {
+            const grid = document.getElementById('imageGrid');
+            grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--cosmic-silver);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🔭</div>
+                    <h3 style="font-family: 'Orbitron', monospace; margin-bottom: 15px; color: var(--orbit-blue);">
+                        NASA Image Database Ready
+                    </h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;">
+                        Search through NASA's vast collection of space imagery
+                    </p>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">
+                        Try: <span style="color: var(--orbit-blue); cursor: pointer;" onclick="performQuickSearch('moon')">moon</span>, 
+                        <span style="color: var(--orbit-blue); cursor: pointer;" onclick="performQuickSearch('mars')">mars</span>, 
+                        <span style="color: var(--orbit-blue); cursor: pointer;" onclick="performQuickSearch('earth')">earth</span>, 
+                        <span style="color: var(--orbit-blue); cursor: pointer;" onclick="performQuickSearch('hubble')">hubble</span>, 
+                        <span style="color: var(--orbit-blue); cursor: pointer;" onclick="performQuickSearch('saturn')">saturn</span>, 
+                        <span style="color: var(--orbit-blue); cursor: pointer;" onclick="performQuickSearch('jupiter')">jupiter</span>, 
+                        <span style="color: var(--orbit-blue); cursor: pointer;" onclick="performQuickSearch('nebula')">nebula</span>
+                    </p>
+                </div>
+            `;
+        }
+
+        // Search NASA Images API
+        async function searchNASAImages(event) {
+            event.preventDefault();
+            
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const searchStatus = document.getElementById('searchStatus');
+            const query = searchInput.value.trim();
+            
+            if (!query) {
+                searchStatus.textContent = 'Please enter a search term';
+                searchStatus.className = 'search-status error';
+                return;
+            }
+            
+            // Show loading state
+            searchBtn.disabled = true;
+            searchBtn.textContent = 'Searching...';
+            searchStatus.textContent = 'Scanning NASA database...';
+            searchStatus.className = 'search-status loading';
+            
+            try {
+                const response = await fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=12`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                nasaImages = data.collection.items.map(item => ({
+                    id: item.data[0].nasa_id,
+                    title: item.data[0].title,
+                    description: item.data[0].description || 'NASA Image Archive',
+                    imageUrl: item.links ? item.links[0].href : null,
+                    date: item.data[0].date_created ? new Date(item.data[0].date_created).toLocaleDateString() : 'Unknown',
+                    center: item.data[0].center || 'NASA',
+                    type: 'nasa'
+                }));
+                
+                populateNASAGallery();
+                
+                searchStatus.textContent = `Found ${nasaImages.length} images`;
+                searchStatus.className = 'search-status';
+                
+            } catch (error) {
+                console.error('NASA API Error:', error);
+                searchStatus.textContent = 'Search failed. Please try again.';
+                searchStatus.className = 'search-status error';
+                
+                // Show error state in grid
+                const grid = document.getElementById('imageGrid');
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--nasa-red);">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+                        <h3 style="font-family: 'Orbitron', monospace; margin-bottom: 15px;">
+                            Search Failed
+                        </h3>
+                        <p>Unable to connect to NASA database. Please check your connection and try again.</p>
+                    </div>
+                `;
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.textContent = 'Search';
+            }
+        }
+
+        // Populate gallery with NASA images
+        function populateNASAGallery() {
+            const grid = document.getElementById('imageGrid');
+            grid.innerHTML = '';
+
+            nasaImages.forEach(image => {
+                const card = document.createElement('div');
+                card.className = 'image-card';
+                card.onclick = () => openViewer(image);
+
+                // Truncate long descriptions
+                const description = image.description.length > 150 
+                    ? image.description.substring(0, 150) + '...' 
+                    : image.description;
+
+                card.innerHTML = `
+                    <div class="image-preview">
+                        ${image.imageUrl ? 
+                            `<img src="${image.imageUrl}" alt="${image.title}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                            `<div class="preview-placeholder">
+                                <div style="font-size: 2rem; margin-bottom: 10px;">📡</div>
+                                <div>NASA Archive</div>
+                            </div>`
+                        }
+                    </div>
+                    <div class="image-info">
+                        <h3 class="image-title">${image.title}</h3>
+                        <p class="image-description">${description}</p>
+                        <div style="font-size: 0.8rem; color: var(--cosmic-silver); margin: 10px 0;">
+                            📅 ${image.date} • ${image.center}
+                        </div>
+                        <button class="view-button">View NASA Image</button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function populateGallery() {
+    const grid = document.getElementById('imageGrid');
+    grid.innerHTML = '';
+
+    imageCatalog.forEach(image => {
+        const card = document.createElement('div');
+        card.className = 'image-card';
+        card.onclick = () => openViewer(image);
+
+        card.innerHTML = `
+            <div class="image-preview">
+                <img src="${image.preview}" alt="${image.title}" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+            <div class="image-info">
+                <h3 class="image-title">${image.title}</h3>
+                <p class="image-description">${image.description}</p>
+                <button class="view-button">Analyze Image</button>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+
+        function openViewer(image) {
+            document.getElementById('viewerMode').style.display = 'block';
+            document.getElementById('currentImageTitle').textContent = image.title;
+            document.body.style.overflow = 'hidden';
+
+            // Initialize OpenSeadragon
+            if (viewer) {
+                viewer.destroy();
+            }
+
+            // Handle different image types
+            if (image.type === 'nasa') {
+                // For NASA images, use the image URL directly
+                viewer = OpenSeadragon({
+                    id: 'openseadragon-viewer',
+                    prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/',
+                    tileSources: {
+                        type: 'image',
+                        url: image.imageUrl
+                    },
+                    animationTime: 1.2,
+                    blendTime: 0.3,
+                    constrainDuringPan: true,
+                    maxZoomPixelRatio: 2,
+                    minZoomLevel: 0.5,
+                    visibilityRatio: 1,
+                    zoomPerScroll: 1.6,
+                    showNavigator: true,
+                    navigatorPosition: 'BOTTOM_RIGHT',
+                    navigatorSizeRatio: 0.13,
+                    navigatorHeight: 200,
+                    navigatorWidth: 200,
+                    showHomeControl: false,
+                    showZoomControl: false,
+                    showFullPageControl: false,
+                    showSequenceControl: false
+                });
+            } else {
+                // For local DZI images
+                viewer = OpenSeadragon({
+                    id: 'openseadragon-viewer',
+                    prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/',
+                    tileSources: image.dzi,
+                    animationTime: 1.2,
+                    blendTime: 0.3,
+                    constrainDuringPan: true,
+                    maxZoomPixelRatio: 3,
+                    minZoomLevel: 0.5,
+                    visibilityRatio: 1,
+                    zoomPerScroll: 1.6,
+                    showNavigator: true,
+                    navigatorHeight: 200,
+                    navigatorWidth: 200,
+                    navigatorPosition: 'BOTTOM_RIGHT',
+                    navigatorSizeRatio: 0.13,
+                    showHomeControl: false,
+                    showZoomControl: false,
+                    showFullPageControl: false,
+                    showSequenceControl: false
+                });
+            }
+
+            // Update coordinates
+            viewer.addHandler('animation', updateCoordinates);
+            viewer.addHandler('zoom', updateCoordinates);
+            viewer.addHandler('pan', updateCoordinates);
+
+            // Update mission status
+            const statusText = image.type === 'nasa' ? 'NASA Analysis Mode' : 'Local Analysis Mode';
+            document.querySelector('.mission-status').innerHTML = 
+                `<div class="status-dot"></div>${statusText}`;
+        }
+
+        function closeViewer() {
+            document.getElementById('viewerMode').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            if (viewer) {
+                viewer.destroy();
+                viewer = null;
+            }
+
+            // Reset mission status based on current mode
+            const statusText = currentMode === 'local' ? 'Local Archive' : 'NASA Database';
+            document.querySelector('.mission-status').innerHTML = 
+                `<div class="status-dot"></div>${statusText}`;
+        }
+
+        function updateCoordinates() {
+            if (!viewer) return;
+            
+            const center = viewer.viewport.getCenter();
+            const zoom = viewer.viewport.getZoom();
+            const coordsElement = document.getElementById('coordinates');
+            
+            if (coordsElement) {
+                coordsElement.textContent = 
+                    `COORDINATES: ${center.x.toFixed(4)}, ${center.y.toFixed(4)} • ZOOM: ${zoom.toFixed(2)}X`;
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.getElementById('viewerMode').requestFullscreen().catch(err => {
+                    console.log('Fullscreen not supported');
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Quick search function for clickable examples
+        function performQuickSearch(term) {
+            document.getElementById('searchInput').value = term;
+            searchNASAImages(new Event('submit'));
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('viewerMode').style.display === 'block') {
+                switch(e.key.toLowerCase()) {
+                    case 'escape':
+                        closeViewer();
+                        break;
+                    case 'h':
+                        if (viewer) viewer.viewport.goHome();
+                        break;
+                    case '=':
+                    case '+':
+                        if (viewer) viewer.viewport.zoomBy(1.5);
+                        break;
+                    case '-':
+                        if (viewer) viewer.viewport.zoomBy(0.7);
+                        break;
+                    case 'f':
+                        e.preventDefault();
+                        toggleFullscreen();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

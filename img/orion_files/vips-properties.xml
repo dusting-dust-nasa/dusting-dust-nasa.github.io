@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<image xmlns="http://www.vips.ecs.soton.ac.uk//dzsave" date="2025-10-04T15:52:17.813768+02" version="8.17.2">
+  <properties>
+    <property>
+      <name>width</name>
+      <value type="gint">18000</value>
+    </property>
+    <property>
+      <name>height</name>
+      <value type="gint">18000</value>
+    </property>
+    <property>
+      <name>bands</name>
+      <value type="gint">1</value>
+    </property>
+    <property>
+      <name>xoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>yoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>xres</name>
+      <value type="gdouble">1</value>
+    </property>
+    <property>
+      <name>yres</name>
+      <value type="gdouble">1</value>
+    </property>
+    <property>
+      <name>vips-loader</name>
+      <value type="VipsRefString">fitsload</value>
+    </property>
+    <property>
+      <name>fits-0</name>
+      <value type="VipsRefString">SIMPLE  =                    T / Written by IDL:  Mon Jun 13 17:11:16 2011</value>
+    </property>
+    <property>
+      <name>fits-1</name>
+      <value type="VipsRefString">BITPIX  =                    8 / Number of bits per data pixel</value>
+    </property>
+    <property>
+      <name>fits-2</name>
+      <value type="VipsRefString">NAXIS   =                    2 / Number of data axes</value>
+    </property>
+    <property>
+      <name>fits-3</name>
+      <value type="VipsRefString">NAXIS1  =                18000 /</value>
+    </property>
+    <property>
+      <name>fits-4</name>
+      <value type="VipsRefString">NAXIS2  =                18000 /</value>
+    </property>
+    <property>
+      <name>fits-5</name>
+      <value type="VipsRefString">DATE    = '2011-06-13'         / Creation UTC (CCCC-MM-DD) date of FITS header</value>
+    </property>
+    <property>
+      <name>fits-6</name>
+      <value type="VipsRefString">COMMENT FITS (Flexible Image Transport System) format is defined in 'Astronomy</value>
+    </property>
+    <property>
+      <name>fits-7</name>
+      <value type="VipsRefString">COMMENT and Astrophysics', volume 376, page 359; bibcode 2001A&amp;A...376..359H</value>
+    </property>
+    <property>
+      <name>fits-8</name>
+      <value type="VipsRefString">CTYPE1  = 'RA---TAN'           / Coordinate Type</value>
+    </property>
+    <property>
+      <name>fits-9</name>
+      <value type="VipsRefString">CTYPE2  = 'DEC--TAN'           / Coordinate Type</value>
+    </property>
+    <property>
+      <name>fits-10</name>
+      <value type="VipsRefString">EQUINOX =              2000.00 /Equinox of Ref. Coord.</value>
+    </property>
+    <property>
+      <name>fits-11</name>
+      <value type="VipsRefString">CD1_1   =  -2.77489264908E-005 / Degrees / Pixel</value>
+    </property>
+    <property>
+      <name>fits-12</name>
+      <value type="VipsRefString">CD2_1   =   3.68953809920E-008 / Degrees / Pixel</value>
+    </property>
+    <property>
+      <name>fits-13</name>
+      <value type="VipsRefString">CD1_2   =  -9.68874095180E-009 / Degrees / Pixel</value>
+    </property>
+    <property>
+      <name>fits-14</name>
+      <value type="VipsRefString">CD2_2   =   2.77991415337E-005 / Degrees / Pixel</value>
+    </property>
+    <property>
+      <name>fits-15</name>
+      <value type="VipsRefString">CRPIX1  =        10986.0000000 / Reference Pixel in X</value>
+    </property>
+    <property>
+      <name>fits-16</name>
+      <value type="VipsRefString">CRPIX2  =        4958.00000000 / Reference Pixel in Y</value>
+    </property>
+    <property>
+      <name>fits-17</name>
+      <value type="VipsRefString">CRVAL1  =        83.7353207787 / R.A. (degrees) of reference pixel</value>
+    </property>
+    <property>
+      <name>fits-18</name>
+      <value type="VipsRefString">CRVAL2  =       -5.52670553949 / Declination of reference pixel</value>
+    </property>
+    <property>
+      <name>fits-19</name>
+      <value type="VipsRefString">LONPOLE =        180.000000000 / Native longitude of Celestial pole</value>
+    </property>
+    <property>
+      <name>fits-20</name>
+      <value type="VipsRefString">LATPOLE =       0.000000000000 / Celestial latitude of native pole</value>
+    </property>
+    <property>
+      <name>fits-21</name>
+      <value type="VipsRefString">PV2_1   =       0.000000000000 /Projection parameter 1</value>
+    </property>
+    <property>
+      <name>fits-22</name>
+      <value type="VipsRefString">HISTORY PUTAST: Jun 13 17:11:16 2011 World Coordinate System parameters written</value>
+    </property>
+    <property>
+      <name>vips-sequential</name>
+      <value type="gint">1</value>
+    </property>
+  </properties>
+</image>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<image xmlns="http://www.vips.ecs.soton.ac.uk//dzsave" date="2025-10-05T11:33:16.007393+02" version="8.17.2">
+  <properties>
+    <property>
+      <name>width</name>
+      <value type="gint">4637</value>
+    </property>
+    <property>
+      <name>height</name>
+      <value type="gint">4590</value>
+    </property>
+    <property>
+      <name>bands</name>
+      <value type="gint">3</value>
+    </property>
+    <property>
+      <name>xoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>yoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>xres</name>
+      <value type="gdouble">2.8346456692913389</value>
+    </property>
+    <property>
+      <name>yres</name>
+      <value type="gdouble">2.8346456692913389</value>
+    </property>
+    <property>
+      <name>vips-loader</name>
+      <value type="VipsRefString">jpegload</value>
+    </property>
+    <property>
+      <name>resolution-unit</name>
+      <value type="VipsRefString">in</value>
+    </property>
+    <property>
+      <name>jpeg-multiscan</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>jpeg-chroma-subsample</name>
+      <value type="VipsRefString">4:4:4</value>
+    </property>
+    <property>
+      <name>exif-ifd0-ImageDescription</name>
+      <value type="VipsRefString">Rich with detail, the spiral galaxy NGC 1309 shines in this NASA/ESA Hubble Space Telescope Picture of the Week. NGC 1309 is situated about 100 million light-years away in the constellation Eridanus. This stunning Hubble image encompasses NGC 1309&#x23e2;&#x2380;&#x2399;s bluish stars, dark brown gas clouds and pearly white centre, as well as hundreds of distant background galaxies. Nearly every smudge, streak and blob of light in this image is an individual galaxy. The only exception to the extragalactic ensemble is a star, which can be identified near the top of the frame by its diffraction spikes. It is positively neighbourly, just a few thousand light-years away in the Milky Way galaxy. Hubble has turned its attention toward NGC 1309 several times; previous Hubble images of this galaxy were released in 2006 and 2014. Much of NGC 1309&#x23e2;&#x2380;&#x2399;s scientific interest derives from two supernovae, SN 2002fk in 2002 and SN 2012Z in 2012. SN 2002fk was a perfect example of a Type Ia supernova, which happens when the core of a dead star (a white dwarf) explodes. SN 2012Z, on the other hand, was a bit of a renegade. It was classified as a Type Iax supernova: while its spectrum resembled that of a Type Ia supernova, the explosion wasn&#x23e2;&#x2380;&#x2399;t as bright as expected. Hubble observations showed that in this case, the supernova did not destroy the white dwarf completely, leaving behind a &#x23e2;&#x2380;&#x2398;zombie star&#x23e2;&#x2380;&#x2399; that shone even brighter than it did before the explosion. Hubble observations of NGC 1309 taken across several years also made this the first time the white dwarf progenitor of a supernova has been identified in images taken before the explosion. [Image Description: A top-down view of a spiral galaxy, showing its brightly shining centre, its broad spiral arms and the faint halo around its disc, as well as distant galaxies and stars on a dark background. Large blue clouds of gas speckled with small stars and strands of dark dust swirl around the galaxy&#x23e2;&#x2380;&#x2399;s disc. A couple of the background galaxies are large enough that their own swirling spiral arms can be seen.] (Rich with detail, the spiral galaxy NGC 1309 shines in this NASA/ESA Hubble Space Telescope Picture of the Week. NGC 1309 is situated about 100 million light-years away in the constellation Eridanus. This stunning Hubble image encompasses NGC 1309&#x23e2;&#x2380;&#x2399;s bluish stars, dark brown gas clouds and pearly white centre, as well as hundreds of distant background galaxies. Nearly every smudge, streak and blob of light in this image is an individual galaxy. The only exception to the extragalactic ensemble is a star, which can be identified near the top of the frame by its diffraction spikes. It is positively neighbourly, just a few thousand light-years away in the Milky Way galaxy. Hubble has turned its attention toward NGC 1309 several times; previous Hubble images of this galaxy were released in 2006 and 2014. Much of NGC 1309&#x23e2;&#x2380;&#x2399;s scientific interest derives from two supernovae, SN 2002fk in 2002 and SN 2012Z in 2012. SN 2002fk was a perfect example of a Type Ia supernova, which happens when the core of a dead star (a white dwarf) explodes. SN 2012Z, on the other hand, was a bit of a renegade. It was classified as a Type Iax supernova: while its spectrum resembled that of a Type Ia supernova, the explosion wasn&#x23e2;&#x2380;&#x2399;t as bright as expected. Hubble observations showed that in this case, the supernova did not destroy the white dwarf completely, leaving behind a &#x23e2;&#x2380;&#x2398;zombie star&#x23e2;&#x2380;&#x2399; that shone even brighter than it did before the explosion. Hubble observations of NGC 1309 taken across several years also made this the first time the white dwarf progenitor of a supernova has been identified in images taken before the explosion. [Image Description: A top-down view of a spiral galaxy, showing its brightly shining centre, its broad spiral arms and the faint halo around its disc, as well as distant galaxies and stars on a dark background. Large blue clouds of gas speckled with small stars and strands of dark dust swirl around the galaxy&#x23e2;&#x2380;&#x2399;s disc. A couple of the background galaxies are large enough that their own swirling spiral arms can be seen.], ASCII, 2059 components, 2059 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-XResolution</name>
+      <value type="VipsRefString">72/1 (72, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-YResolution</name>
+      <value type="VipsRefString">72/1 (72, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-ResolutionUnit</name>
+      <value type="VipsRefString">2 (Inch, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ExifVersion</name>
+      <value type="VipsRefString">Exif Version 2.1 (Exif Version 2.1, Undefined, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-FlashpixVersion</name>
+      <value type="VipsRefString">FlashPix Version 1.0 (FlashPix Version 1.0, Undefined, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ColorSpace</name>
+      <value type="VipsRefString">65535 (Uncalibrated, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>vips-sequential</name>
+      <value type="gint">1</value>
+    </property>
+  </properties>
+</image>
